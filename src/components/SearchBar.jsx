@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { searchProduct } from '../store/actions'
+import { searchProduct, fetchProduct } from '../store/actions'
 
 export default function SearchBar() {
 
@@ -9,7 +9,11 @@ export default function SearchBar() {
   const {isLoading} = useSelector( state => state.ProductReducer)
 
   const onClickHanlder = () => {
-    dispatch(searchProduct(localState))
+    if(localState.length > 0){
+      dispatch(searchProduct(localState))
+    }else{
+      dispatch(fetchProduct())
+    }
   }
 
   const onChangeHandler = (e) => {
@@ -18,17 +22,18 @@ export default function SearchBar() {
     )
   }
   return (
-    <div className="search-bar">
-      <div className="search-input">
-        <input 
+    <div className="d-flex justify-content-end align-items-center w-100 p-2 bg-secondary bg-gradient">
+      <div className="mx-1">
+        <input
           type="text"
           value={localState}
           onChange={onChangeHandler}
           disabled={isLoading}
         />
       </div>
-      <div className="search-button">
+      <div className="">
         <button
+          className= "btn btn-primary"
           onClick={onClickHanlder}
           disabled={isLoading}
         >{isLoading ? "wait" : "search"}</button>

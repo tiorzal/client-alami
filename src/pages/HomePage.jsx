@@ -1,21 +1,20 @@
-import React, { useEffect } from 'react'
-import { fetchProduct } from '../store/actions'
-import { useDispatch, useSelector} from 'react-redux'
-import { SearchBar } from '../components'
+import React from 'react'
+import { SearchBar, AddProductFrom, ProductList } from '../components'
 
 export default function HomePage() {
 
-  const dispatch = useDispatch()
-  const {products} = useSelector( state => state.ProductReducer)
+  // const dispatch = useDispatch()
+  // const {products} = useSelector( state => state.ProductReducer)
 
-  useEffect( () => {
-    dispatch(fetchProduct())
-  }, [dispatch])
+  // useEffect( () => {
+  //   dispatch(fetchProduct())
+  // }, [dispatch])
 
   return (
     <div>
       <SearchBar/>
-      {JSON.stringify(products)}
+      <AddProductFrom/>
+      <ProductList/>
     </div>
   )
 }

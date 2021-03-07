@@ -1,5 +1,5 @@
 import axios from '../../config/axiosinstance'
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 export const fetchProduct = () => {
   return async (dispatch) => {
@@ -42,6 +42,34 @@ export const searchProduct = (key) => {
         dispatch({ type: 'SET_IS_LOADING', payload: false})
       }, 3000)
     }
-    
+  }
+}
+
+export const addProduct = (payload) => {
+  return async (dispatch) => {
+    try {
+      payload.SELLER_ID = 1
+      const response = await axios({
+        url: "/",
+        method: "POST",
+        data: payload
+      })
+      console.log(response);
+      if(response){
+        Swal.fire({
+          title: 'Berhasil menambahkan product',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          position: 'center'
+        })
+        dispatch(fetchProduct())
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+
   }
 }
