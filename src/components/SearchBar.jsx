@@ -36,7 +36,7 @@ export default function SearchBar() {
           className= "btn btn-primary"
           onClick={onClickHanlder}
           disabled={isLoading}
-        >{isLoading ? "wait" : "search"}</button>
+        >{isLoading ? "tunggu" : "cari"}</button>
       </div>
     </div>
   )
