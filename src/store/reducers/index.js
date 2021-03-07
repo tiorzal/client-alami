@@ -1,5 +1,6 @@
 const initState = {
-  products: []
+  products: [],
+  isLoading: false,
 }
 
 function ProductReducer (state = initState, action) {
@@ -8,6 +9,11 @@ function ProductReducer (state = initState, action) {
       return {
         ...state,
         products: action.payload
+      }
+    case 'SET_IS_LOADING':
+      return {
+        ...state,
+        isLoading: action.payload
       }  
     default:
       return state
